@@ -24,7 +24,7 @@ First, index the data for a given district:
 java -jar target/kw-crawler-1.0-SNAPSHOT.jar index WL1A
 ```
 
-Then you can search the index:
+Then, you can search the index:
 
 ```bash
 java -jar target/kw-crawler-1.0-SNAPSHOT.jar search 'text'

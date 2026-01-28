@@ -48,13 +48,17 @@ java -jar target/kw-crawler-1.0-SNAPSHOT.jar search '+lokalizacja:Miedźno +wła
     ```
 
     ```sql
-    CREATE TABLE my_geometries (id text, description text, owner_type text, geom GEOMETRY(Geometry, 2180));
+    CREATE TABLE my_geometries (id text PRIMARY KEY, description text, owner_type text, geom GEOMETRY(Geometry, 2180));
     ```
-3. Map the data:
+3. (Optional, but recommended for performance) Create a spatial index to speed up map queries:
+    ```sql
+    CREATE INDEX my_geometries_geom_idx ON my_geometries USING GIST (geom);
+    ```
+4. Map the data:
     ```bash
     java -jar target/kw-crawler-1.0-SNAPSHOT.jar map WL1A
     ```
-4. Add a layer into GeoServer:
+5. Add a layer into GeoServer:
     - Go to http://localhost:18080/geoserver/
     - Log in with `admin:geoserver`
     - Add a new workspace: `local`
@@ -67,6 +71,6 @@ java -jar target/kw-crawler-1.0-SNAPSHOT.jar search '+lokalizacja:Miedźno +wła
         - Schema: `public`
         - Table: `my_geometries`
     - Add a new layer: `my_geometries`
-5. Define the following style from the file `geoserver-style.xml` and make it the default for the layer.
+6. Define the following style from the file `geoserver-style.xml` and make it the default for the layer.
 
-6. Open `index.html` in your browser to see the map.
+7. Open `index.html` in your browser to see the map.

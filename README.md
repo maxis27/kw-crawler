@@ -48,7 +48,7 @@ java -jar target/kw-crawler-1.0-SNAPSHOT.jar search '+lokalizacja:Miedźno +wła
     ```
 
     ```sql
-    CREATE TABLE my_geometries (id text PRIMARY KEY, description text, owner_type text, geom GEOMETRY(Geometry, 2180));
+    CREATE TABLE my_geometries (id TEXT PRIMARY KEY, description TEXT, owner_type TEXT, geom GEOMETRY(Geometry, 2180));
     ```
 3. (Optional, but recommended for performance) Create a spatial index to speed up map queries:
     ```sql
